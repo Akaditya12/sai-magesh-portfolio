@@ -196,10 +196,43 @@ window.CONTENT = {
     { figure: "100+", title: "Cadets Commanded",         note: "Company Sergeant Major, NCC · Ramakrishna Mission Vivekananda College · 2021–22." },
     { figure: "YEP",  title: "Youth Exchange Programme", note: "Qualified for the NCC Youth Exchange Programme to Singapore, 2020." },
     { figure: "1st",  title: "Table Tennis",             note: "Inter-company champion representing NatWest, 2022. Multiple state and district-level titles." },
+    { figure: "3rd",  title: "Marathon — 6 km",         note: "Third place over 6 km in 30 minutes · Strength Fit, Hosur · October 2021." },
     { figure: "Prize", title: "Paper Presentation",      note: "Prize-winner, Digitisation of India · DG Vaishnav College, Chennai." }
   ],
 
-  /* ── 07 · Contact ───────────────────────────────────────────────────── */
+  /* ── 07 · Off duty ──────────────────────────────────────────────────── */
+  offDuty: {
+    lede: "Three things outside the work that shaped how I operate: the NCC, sport, and a camera.",
+    strands: [
+      {
+        label: "NCC",
+        text:  "Company Sergeant Major at Ramakrishna Mission Vivekananda College, responsible for over 100 cadets, and selected for the Youth Exchange Programme to Singapore. Five Services Selection Boards attended; three conference-outs."
+      },
+      {
+        label: "Sport",
+        text:  "Table tennis at state and district level, and inter-company champion at NatWest. Third place over 6 km at the Strength Fit marathon in Hosur, in 30 minutes."
+      },
+      {
+        label: "Photography",
+        text:  "Mostly skies, mostly at dusk, mostly from a rooftop in Chennai. Shot on a phone — the light does the work."
+      }
+    ],
+    /* Masonry order — photos keep their own proportions. Add or remove freely;
+       each needs <src>.jpg and <src>_t.jpg in assets/img/gallery/. */
+    gallery: [
+      { src: "ncc_guard",   caption: "Guard duty · NCC",            alt: "Sri Saye Magesh in NCC uniform on guard duty, rifle at his side" },
+      { src: "ncc_portrait", caption: "Company Sergeant Major",      alt: "Formal portrait in NCC uniform" },
+      { src: "photo_palm_sunset", caption: "Sundown through the palms",   alt: "Sun setting behind coconut palms" },
+      { src: "photo_storm_cloud", caption: "Anvil cloud building",        alt: "A towering storm cloud over rooftops at dusk" },
+      { src: "photo_rooftop_dusk", caption: "Rooftop, last light",         alt: "Silhouette of a figure on a rooftop against the setting sun" },
+      { src: "sport_trophy", caption: "Long distance",               alt: "Running trophy topped with a sprinting figure" },
+      { src: "ncc_cadets",  caption: "The company · NCC",           alt: "Group of NCC cadets in uniform" },
+      { src: "photo_night_bloom", caption: "Night-blooming cereus",       alt: "A white night-blooming cereus flower against darkness" },
+      { src: "photo_skyline_dusk", caption: "Chennai skyline at dusk",     alt: "Wide view of the Chennai skyline at dusk with layered cloud" }
+    ]
+  },
+
+  /* ── 08 · Contact ───────────────────────────────────────────────────── */
   contact: {
     lede:     "Open to consulting, strategy and finance roles, and to case competitions. Email is the fastest route.",
     email:    "srisayemageshn10@gmail.com",

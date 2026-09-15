@@ -5,14 +5,17 @@ in [`assets/js/content.js`](assets/js/content.js).
 
 ## Needs a file
 
-- [ ] **Portrait** → save as `assets/img/portrait.jpg`. 4:5 crop, at least 800 × 1000 px.
-      `content.js` already points at that path; until the file exists the panel shows a
-      marked placeholder rather than an empty box.
-- [ ] **Photography gallery** → `assets/img/photography/`
-- [ ] **NCC** → `assets/img/ncc/`
-- [ ] **Sports** → `assets/img/sports/`
+- [ ] **Portrait** → save the professional headshot (suit and tie, white background) as
+      `assets/img/portrait.jpg`. 4:5 crop, at least 800 × 1000 px. `content.js` already points
+      at that path; until the file exists the About panel shows a marked placeholder rather
+      than an empty box. **This is the only thing still missing from the page.**
 
-The three galleries need a new section built. Drop the images in and say the word.
+Done: the photography, NCC and sports images are in. Nine were selected, resized and published
+under `assets/img/gallery/` at two sizes — `_t.jpg` thumbnails for the masonry, full size for
+the lightbox. Re-encoding drops any metadata; in this case there was none to drop, since
+WhatsApp had already stripped it. Originals are kept outside the repo at
+`../../images/sri_saye_magesh_source/`, along with the two sports certificates, which read as
+paperwork on a portfolio and were left off the page.
 
 ## Needs Sri Saye's confirmation
 
@@ -36,6 +39,12 @@ The three galleries need a new section built. Drop the images in and say the wor
 - [ ] **Tata Steel vs JSW** links to the raw `.xlsx`. A one-page PDF summary would read far
       better to a recruiter than a spreadsheet download.
 - [ ] **Learnous result** — the site says Pre-Finals. Update if the final placing is known.
+- [ ] **Table tennis detail.** The certificate in the sports folder shows semi-finalist, Sub-Junior
+      Boys Singles, 24th Open Table Tennis Tournament (Salem Round Table No. 28), November 2016.
+      The site currently carries the résumé's broader "state and district-level titles" claim
+      instead. Say which he wants.
+- [ ] **More photographs.** The gallery takes as many as he likes — add the file to
+      `assets/img/gallery/` at both sizes and one line to `offDuty.gallery` in `content.js`.
 - [ ] School results (12th 85.8%, 10th 89.3%) were left off deliberately. Say if they should
       go back in.
 

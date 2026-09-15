@@ -64,6 +64,7 @@
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
       <a href="#achievements">Achievements</a>
+      <a href="#offduty">Off Duty</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -191,7 +192,21 @@
   </div>
 </section>
 
-<!-- ══ 07 · CONTACT ══ -->
+<!-- ══ 07 · OFF DUTY ══ -->
+<section class="section" id="offduty">
+  <div class="wrap">
+    <header class="shead reveal">
+      <p class="shead__kick mono">07 / OFF DUTY</p>
+      <h2 class="shead__title">Beyond the desk</h2>
+      <span class="shead__rule" aria-hidden="true"></span>
+    </header>
+    <p class="offduty__lede reveal" id="offdutyLede"></p>
+    <div class="strands reveal" id="strands"></div>
+    <div class="mosaic" id="mosaic"></div>
+  </div>
+</section>
+
+<!-- ══ 08 · CONTACT ══ -->
 <section class="section section--contact" id="contact">
   <div class="dial" aria-hidden="true">
     <svg viewBox="0 0 240 240" id="chakraDial">
@@ -203,7 +218,7 @@
   </div>
   <div class="wrap">
     <header class="shead shead--center reveal">
-      <p class="shead__kick mono">07 / SIGNAL</p>
+      <p class="shead__kick mono">08 / SIGNAL</p>
       <h2 class="shead__title">Get in touch</h2>
       <span class="shead__rule" aria-hidden="true"></span>
     </header>
@@ -228,6 +243,16 @@
 </button>
 
 <div class="draftchip mono" id="draftChip" hidden>DRAFT BUILD · CONTENT PENDING</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lightbox__btn lightbox__close" id="lbClose" aria-label="Close viewer">&times;</button>
+  <button class="lightbox__btn lightbox__prev"  id="lbPrev"  aria-label="Previous photo">&#8249;</button>
+  <figure class="lightbox__fig">
+    <img id="lbImg" alt="">
+    <figcaption class="mono" id="lbCap"></figcaption>
+  </figure>
+  <button class="lightbox__btn lightbox__next"  id="lbNext"  aria-label="Next photo">&#8250;</button>
+</div>
 
 <script src="assets/js/content.js"></script>
 <script src="assets/js/main.js"></script>

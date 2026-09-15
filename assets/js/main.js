@@ -170,6 +170,72 @@
     set('footLinks', fl.join(''));
   }
 
+  var GAL = 'assets/img/gallery/';
+
+  function renderOffDuty() {
+    var o = C.offDuty;
+    if (!o) return;
+    set('offdutyLede', esc(o.lede));
+
+    set('strands', (o.strands || []).map(function (st) {
+      return '<div class="strand"><p class="strand__label mono">' + esc(st.label) + '</p>' +
+             '<p>' + esc(st.text) + '</p></div>';
+    }).join(''));
+
+    set('mosaic', (o.gallery || []).map(function (g, i) {
+      return '<button class="shot" data-shot="' + i + '" aria-label="View photo: ' + esc(g.caption) + '">' +
+               '<img src="' + GAL + esc(g.src) + '_t.jpg" alt="' + esc(g.alt || g.caption) + '" loading="lazy" decoding="async">' +
+               '<span class="shot__cap">' + esc(g.caption) + '</span>' +
+             '</button>';
+    }).join(''));
+  }
+
+  /* Lightbox — click or keyboard, arrows to move, Escape to leave. */
+  function lightbox() {
+    var box = $('#lightbox'), img = $('#lbImg'), cap = $('#lbCap');
+    var shots = (C.offDuty && C.offDuty.gallery) || [];
+    if (!box || !shots.length) return;
+    var at = 0, opener = null;
+
+    function show(i) {
+      at = (i + shots.length) % shots.length;
+      var g = shots[at];
+      img.src = GAL + g.src + '.jpg';
+      img.alt = g.alt || g.caption;
+      cap.textContent = g.caption + '  ·  ' + (at + 1) + ' / ' + shots.length;
+    }
+    function open(i) {
+      opener = document.activeElement;
+      show(i);
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
+      $('#lbClose').focus();
+    }
+    function close() {
+      box.hidden = true;
+      document.body.style.overflow = '';
+      if (opener && opener.focus) opener.focus();
+    }
+
+    var grid = $('#mosaic');
+    if (grid) grid.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-shot]');
+      if (btn) open(Number(btn.dataset.shot));
+    });
+
+    $('#lbClose').addEventListener('click', close);
+    $('#lbPrev').addEventListener('click', function () { show(at - 1); });
+    $('#lbNext').addEventListener('click', function () { show(at + 1); });
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape')     { close(); }
+      if (e.key === 'ArrowLeft')  { show(at - 1); }
+      if (e.key === 'ArrowRight') { show(at + 1); }
+    });
+  }
+
   function hud() {
     return '<span class="hud__corner hud__corner--tl"></span><span class="hud__corner hud__corner--tr"></span>' +
            '<span class="hud__corner hud__corner--bl"></span><span class="hud__corner hud__corner--br"></span>';
@@ -532,6 +598,7 @@
     renderProjects();
     renderEducation();
     renderAchievements();
+    renderOffDuty();
     renderContact();
 
     ticks('bootTicks', 60, 60, 52, 46, 24);
@@ -547,6 +614,7 @@
     parallax();
     magnets();
     dial();
+    lightbox();
     window.setTimeout(scramble, REDUCED ? 0 : 900);
   }
 
