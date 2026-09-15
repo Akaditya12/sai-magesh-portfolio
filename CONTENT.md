@@ -3,12 +3,11 @@
 Content is in. This is what still needs a decision or a file before `draft: false` is set
 in [`assets/js/content.js`](assets/js/content.js).
 
-## Needs a file
+## Files — all in
 
-- [ ] **Portrait** → save the professional headshot (suit and tie, white background) as
-      `assets/img/portrait.jpg`. 4:5 crop, at least 800 × 1000 px. `content.js` already points
-      at that path; until the file exists the About panel shows a marked placeholder rather
-      than an empty box. **This is the only thing still missing from the page.**
+- [x] **Portrait** — in place at `assets/img/portrait.jpg`, cropped to 4:5 from the original
+      581 × 772 headshot. It is on the small side for a high-density screen; if a larger
+      original exists, drop it in and I will recrop.
 
 Done: the photography, NCC and sports images are in. Nine were selected, resized and published
 under `assets/img/gallery/` at two sizes — `_t.jpg` thumbnails for the masonry, full size for
