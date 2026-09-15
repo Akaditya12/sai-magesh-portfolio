@@ -1,6 +1,6 @@
-# Sai Magesh Nagarajan — Portfolio
+# Sri Saye Magesh N — Portfolio
 
-A single-page portfolio site. Static, dependency-free, no build step. Deployed on GitHub Pages.
+Portfolio site for Sri Saye Magesh N — MBA (PGPM) candidate, Great Lakes Chennai. Single page. Static, dependency-free, no build step. Deployed on GitHub Pages.
 
 **Live:** https://akaditya12.github.io/sai-magesh-portfolio/
 
@@ -8,11 +8,9 @@ A single-page portfolio site. Static, dependency-free, no build step. Deployed o
 
 ## Status
 
-**Draft build — content pending.** The structure, theme and interactions are complete. Every
-piece of copy is placeholder text marked `TODO` in `assets/js/content.js`.
-
-A small `DRAFT BUILD · CONTENT PENDING` chip shows in the bottom-left corner. It disappears
-when you set `draft: false` in `content.js`.
+**Live with real content.** Structure, theme, interactions and copy are all in. A small
+`DRAFT BUILD · CONTENT PENDING` chip shows bottom-left until the portrait and the remaining
+confirmations land — see [CONTENT.md](CONTENT.md). Set `draft: false` in `content.js` to hide it.
 
 ---
 

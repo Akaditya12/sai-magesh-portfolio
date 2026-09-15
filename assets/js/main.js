@@ -22,7 +22,7 @@
   function renderIdentity() {
     document.title = C.name + ' — Portfolio';
     set('brandName', esc(C.name));
-    set('brandRole', esc(C.role));
+    set('brandRole', esc(C.roleShort || C.role));
     set('heroName', esc(C.name));
     set('heroKicker', esc(C.kicker));
     set('heroBlurb', esc(C.blurb));
@@ -50,12 +50,18 @@
       return '<div><dt>' + esc(f.label) + '</dt><dd>' + esc(f.value) + '</dd></div>';
     }).join(''));
 
+    // Only swap in the portrait once it has actually loaded — a missing or
+    // broken file leaves the marked placeholder in place rather than a void.
     var pt = $('#aboutPortrait');
     if (pt && a.portrait) {
-      pt.classList.add('has-img');
-      pt.style.backgroundImage = 'url("' + a.portrait + '")';
-      pt.setAttribute('role', 'img');
-      pt.setAttribute('aria-label', 'Portrait of ' + C.name);
+      var probe = new Image();
+      probe.onload = function () {
+        pt.classList.add('has-img');
+        pt.style.backgroundImage = 'url("' + a.portrait + '")';
+        pt.setAttribute('role', 'img');
+        pt.setAttribute('aria-label', 'Portrait of ' + C.name);
+      };
+      probe.src = a.portrait;
     }
   }
 

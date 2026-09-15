@@ -1,58 +1,46 @@
-# Content checklist
+# Outstanding items
 
-Fill this in, then hand it over — or send it to Aditya and he will drop it into `content.js`.
-Everything here maps to a field in [`assets/js/content.js`](assets/js/content.js).
+Content is in. This is what still needs a decision or a file before `draft: false` is set
+in [`assets/js/content.js`](assets/js/content.js).
 
-Tick items off as they land. Set `draft: false` when the last box is ticked.
+## Needs a file
 
-## Identity
-- [ ] Full name as it should appear
-- [ ] Role / title line — e.g. "Mechanical Design Engineer"
-- [ ] One-line positioning statement (max ~20 words)
-- [ ] Hero kicker — keep "Discipline · Precision · Country" or replace
-- [ ] Three or four hero figures — years of experience, projects, certifications, awards
+- [ ] **Portrait** → save as `assets/img/portrait.jpg`. 4:5 crop, at least 800 × 1000 px.
+      `content.js` already points at that path; until the file exists the panel shows a
+      marked placeholder rather than an empty box.
+- [ ] **Photography gallery** → `assets/img/photography/`
+- [ ] **NCC** → `assets/img/ncc/`
+- [ ] **Sports** → `assets/img/sports/`
 
-## About
-- [ ] Paragraph 1 — what he does and to what standard
-- [ ] Paragraph 2 — the route here: training, formative work, what is next
-- [ ] Paragraph 3 (optional) — interests outside the work
-- [ ] Four to six focus-area tags
-- [ ] Side panel facts — based in, focus, open to, languages
-- [ ] Portrait photo, 4:5, min 800 × 1000 px
+The three galleries need a new section built. Drop the images in and say the word.
 
-## Skills
-- [ ] Three groups, three to five skills each
-- [ ] An honest 0–100 level for every skill
+## Needs Sri Saye's confirmation
 
-## Experience
-For each role:
-- [ ] Period, role title, organisation, location
-- [ ] Two to four bullets: action verb → what → scale → measurable outcome
+- [ ] **Name spelling.** The site uses **Sri Saye Magesh N**, as it appears on his résumé.
+      The repo and folder are still named `sai-magesh-portfolio` — say if that should change.
+- [ ] **Voice.** The About section is written in the first person ("I work where compliance
+      meets operations…"). Third person is a one-line change if he prefers it.
+- [ ] **Skill levels.** The 0–100 figures in `skills` are an estimate drawn from his résumé,
+      not his own rating. He should adjust them — they are the one thing on the page he can
+      be challenged on in an interview.
+- [ ] **Case decks.** Four of his own documents are published under `assets/docs/` and linked
+      from the project cards. Confirm the competition organisers allow public sharing of
+      submissions before the link goes out widely.
+- [ ] **Résumé PDF.** It is public at `assets/docs/resume_sri_saye_magesh_n.pdf` and carries
+      his age and gender. Fine if intended; worth a second's thought before sharing widely.
 
-## Projects
-For each project:
-- [ ] Title, category (max four categories across all projects)
-- [ ] Two-sentence description: problem, what he built, result
-- [ ] Tools or stack
-- [ ] Links — live URL, GitHub, or none
+## Gaps worth filling
 
-## Education & certifications
-- [ ] Degree: years, name, institution, grade or focus
-- [ ] Each certification: year, name, issuing body, credential ID
+- [ ] **FinEase** has no link and no detail beyond one line. A repo link or a screenshot
+      would make it a real entry rather than a mention.
+- [ ] **Tata Steel vs JSW** links to the raw `.xlsx`. A one-page PDF summary would read far
+      better to a recruiter than a spreadsheet download.
+- [ ] **Learnous result** — the site says Pre-Finals. Update if the final placing is known.
+- [ ] School results (12th 85.8%, 10th 89.3%) were left off deliberately. Say if they should
+      go back in.
 
-## Achievements
-- [ ] Figure, title, and context line for each
+## Then
 
-## Contact
-- [ ] Email
-- [ ] Phone
-- [ ] City and state
-- [ ] LinkedIn URL
-- [ ] GitHub URL
-- [ ] Résumé PDF
-
-## Before launch
-- [ ] `draft: false` set in `content.js`
-- [ ] Every `TODO` comment in `content.js` resolved
-- [ ] Checked on a phone
-- [ ] All external links open correctly
+- [ ] Set `draft: false` in `content.js` — this hides the DRAFT BUILD chip.
+- [ ] Check on a phone.
+- [ ] Transfer the repo (see README).
