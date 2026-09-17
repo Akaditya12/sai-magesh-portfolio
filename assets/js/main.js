@@ -9,6 +9,7 @@
   var $  = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var GAL = 'assets/img/gallery/';
 
   function esc(s) {
     return String(s == null ? '' : s)
@@ -67,18 +68,13 @@
 
   function renderSkills() {
     set('skillsGrid', (C.skills || []).map(function (g) {
-      var meters = (g.items || []).map(function (s) {
-        var lv = Math.max(0, Math.min(100, Number(s.level) || 0));
-        return '<div class="meter">' +
-                 '<div class="meter__top"><span class="meter__name">' + esc(s.name) + '</span>' +
-                 '<span class="meter__val">' + lv + '%</span></div>' +
-                 '<div class="meter__track" role="img" aria-label="' + esc(s.name) + ': ' + lv + ' out of 100">' +
-                   '<div class="meter__fill" data-level="' + lv + '"></div>' +
-                 '</div>' +
-               '</div>';
+      var items = (g.items || []).map(function (it) {
+        return '<li>' + esc(it) + '</li>';
       }).join('');
       return '<article class="card card--hud skillcard reveal">' + hud() +
-               '<h3>' + esc(g.group) + '</h3>' + meters + '</article>';
+               '<h3>' + esc(g.group) + '</h3>' +
+               '<ul class="skilllist">' + items + '</ul>' +
+             '</article>';
     }).join(''));
   }
 
@@ -111,6 +107,11 @@
         .map(function (l) {
           return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ' ↗</a>';
         }).join('');
+      if (p.gallery && (C.projectGalleries || {})[p.gallery]) {
+        var key = registerGallery('proj-' + p.gallery, p.gallery, C.projectGalleries[p.gallery]);
+        links += '<button class="proj__gal" data-gallery="' + key + '">Field photographs (' +
+                 C.projectGalleries[p.gallery].length + ')</button>';
+      }
       return '<article class="card card--hud proj reveal" data-cat="' + esc(p.category || '') + '">' + hud() +
                '<p class="proj__idx">' + String(i + 1).padStart(2, '0') + ' / ' + esc(p.category || '—') + '</p>' +
                '<h3 class="proj__title">' + esc(p.title) + '</h3>' +
@@ -170,57 +171,156 @@
     set('footLinks', fl.join(''));
   }
 
-  var GAL = 'assets/img/gallery/';
 
   function renderOffDuty() {
     var o = C.offDuty;
     if (!o) return;
     set('offdutyLede', esc(o.lede));
 
-    set('strands', (o.strands || []).map(function (st) {
-      return '<div class="strand"><p class="strand__label mono">' + esc(st.label) + '</p>' +
-             '<p>' + esc(st.text) + '</p></div>';
+    set('strands', (o.strands || []).map(function (st, i) {
+      var n     = String(i + 1).padStart(2, '0');
+      var count = (st.gallery || []).length;
+      var key   = count ? registerGallery('strand-' + i, st.folder, st.gallery) : '';
+
+      var front = st.cover
+        ? '<img src="' + GAL + esc(st.folder) + '/' + esc(st.cover) + '_t.jpg" alt="" loading="lazy" decoding="async">'
+        : '<span class="flip__mark" aria-hidden="true"></span>';
+
+      return '<article class="flip' + (st.cover ? '' : ' flip--type') + '">' +
+        '<div class="flip__inner">' +
+
+          '<div class="flip__face flip__front">' +
+            front +
+            '<div class="flip__veil"></div>' +
+            '<div class="flip__head">' +
+              '<p class="flip__idx mono">' + n + '</p>' +
+              '<h3 class="flip__title">' + esc(st.label) + '</h3>' +
+            '</div>' +
+            '<button class="flip__toggle" aria-expanded="false">' +
+              '<span class="mono">Read</span>' +
+              '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+              '<span class="sr">more about ' + esc(st.label) + '</span>' +
+            '</button>' +
+          '</div>' +
+
+          '<div class="flip__face flip__back">' +
+            '<p class="flip__idx mono">' + n + ' / ' + esc(st.label) + '</p>' +
+            '<div class="flip__copy"><p>' + esc(st.text) + '</p></div>' +
+            '<div class="flip__foot">' +
+              (count ? '<button class="flip__gal" data-gallery="' + key + '">' + count + ' photograph' + (count > 1 ? 's' : '') + '</button>' : '<span></span>') +
+              '<button class="flip__back-btn" aria-label="Close ' + esc(st.label) + '">' +
+                '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+
+        '</div>' +
+      '</article>';
     }).join(''));
 
-    set('mosaic', (o.gallery || []).map(function (g, i) {
-      return '<button class="shot" data-shot="' + i + '" aria-label="View photo: ' + esc(g.caption) + '">' +
-               '<img src="' + GAL + esc(g.src) + '_t.jpg" alt="' + esc(g.alt || g.caption) + '" loading="lazy" decoding="async">' +
-               '<span class="shot__cap">' + esc(g.caption) + '</span>' +
-             '</button>';
-    }).join(''));
+    var host = $('#strands');
+    if (!host) return;
+    host.addEventListener('click', function (e) {
+      var t = e.target.closest('.flip__toggle, .flip__back-btn');
+      if (!t) return;
+      var card = t.closest('.flip');
+      var on   = card.classList.toggle('is-flipped');
+      var btn  = $('.flip__toggle', card);
+      if (btn) btn.setAttribute('aria-expanded', String(on));
+      if (!on) {
+        /* Closing while the pointer is still on the card would otherwise be
+           undone instantly by the hover rule. Suspend hover until it leaves. */
+        card.classList.add('no-hover');
+        card.addEventListener('mouseleave', function off() {
+          card.classList.remove('no-hover');
+          card.removeEventListener('mouseleave', off);
+        });
+        if (btn) btn.focus();
+      }
+    });
+    host.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var card = e.target.closest('.flip.is-flipped');
+      if (!card) return;
+      card.classList.remove('is-flipped');
+      var btn = $('.flip__toggle', card);
+      if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+    });
+  }
+
+  /* ── Gallery registry ────────────────────────────────────────────────
+     Every gallery on the page — one per off-duty strand, one per project —
+     registers here under a key. The lightbox opens whichever key it is
+     handed, so there is a single viewer rather than one per section. */
+  var GALLERIES = {};
+
+  function registerGallery(key, folder, items) {
+    GALLERIES[key] = (items || []).map(function (g) {
+      return {
+        full:    GAL + folder + '/' + g.src + '.jpg',
+        thumb:   GAL + folder + '/' + g.src + '_t.jpg',
+        caption: g.caption || ''
+      };
+    });
+    return key;
   }
 
   /* Lightbox — click or keyboard, arrows to move, Escape to leave. */
   function lightbox() {
-    var box = $('#lightbox'), img = $('#lbImg'), cap = $('#lbCap');
-    var shots = (C.offDuty && C.offDuty.gallery) || [];
-    if (!box || !shots.length) return;
-    var at = 0, opener = null;
+    var box = $('#lightbox'), img = $('#lbImg'), cap = $('#lbCap'), strip = $('#lbStrip');
+    if (!box) return;
+    var list = [], at = 0, opener = null;
 
     function show(i) {
-      at = (i + shots.length) % shots.length;
-      var g = shots[at];
-      img.src = GAL + g.src + '.jpg';
-      img.alt = g.alt || g.caption;
-      cap.textContent = g.caption + '  ·  ' + (at + 1) + ' / ' + shots.length;
+      if (!list.length) return;
+      at = (i + list.length) % list.length;
+      var g = list[at];
+      img.src = g.full;
+      img.alt = g.caption;
+      cap.textContent = g.caption + '  ·  ' + (at + 1) + ' / ' + list.length;
+      if (strip) {
+        $$('button', strip).forEach(function (b, n) {
+          b.classList.toggle('is-on', n === at);
+          if (n === at && b.scrollIntoView) b.scrollIntoView({ block: 'nearest', inline: 'center' });
+        });
+      }
     }
-    function open(i) {
+
+    function open(key, i) {
+      list = GALLERIES[key] || [];
+      if (!list.length) return;
       opener = document.activeElement;
-      show(i);
+      if (strip) {
+        strip.innerHTML = list.map(function (g, n) {
+          return '<button data-i="' + n + '" aria-label="Photo ' + (n + 1) + '">' +
+                 '<img src="' + g.thumb + '" alt="" loading="lazy" decoding="async"></button>';
+        }).join('');
+        strip.hidden = list.length < 2;
+      }
+      show(i || 0);
       box.hidden = false;
       document.body.style.overflow = 'hidden';
       $('#lbClose').focus();
     }
+
     function close() {
       box.hidden = true;
       document.body.style.overflow = '';
+      img.removeAttribute('src');
       if (opener && opener.focus) opener.focus();
     }
 
-    var grid = $('#mosaic');
-    if (grid) grid.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-shot]');
-      if (btn) open(Number(btn.dataset.shot));
+    /* Anything carrying data-gallery opens the viewer. */
+    document.addEventListener('click', function (e) {
+      var trig = e.target.closest('[data-gallery]');
+      if (!trig) return;
+      e.preventDefault();
+      open(trig.dataset.gallery, 0);
+    });
+
+    if (strip) strip.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-i]');
+      if (b) show(Number(b.dataset.i));
     });
 
     $('#lbClose').addEventListener('click', close);
@@ -455,7 +555,6 @@
     var items = $$('.reveal');
     if (!('IntersectionObserver' in window) || REDUCED) {
       items.forEach(function (n) { n.classList.add('is-in'); });
-      $$('.meter__fill').forEach(function (m) { m.style.width = m.dataset.level + '%'; });
       $$('[data-count]').forEach(function (n) { n.textContent = n.dataset.count; });
       return;
     }
@@ -467,9 +566,6 @@
         var sibs = Array.prototype.indexOf.call(n.parentNode.children, n);
         n.style.transitionDelay = Math.min(sibs, 5) * 70 + 'ms';
         n.classList.add('is-in');
-        $$('.meter__fill', n).forEach(function (m, i) {
-          window.setTimeout(function () { m.style.width = m.dataset.level + '%'; }, 200 + i * 90);
-        });
         $$('[data-count]', n).forEach(count);
         if (n.hasAttribute('data-count')) count(n);
         io.unobserve(n);

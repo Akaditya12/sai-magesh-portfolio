@@ -8,9 +8,7 @@ Portfolio site for Sri Saye Magesh N — MBA (PGPM) candidate, Great Lakes Chenn
 
 ## Status
 
-**Live with real content.** Structure, theme, interactions and copy are all in. A small
-`DRAFT BUILD · CONTENT PENDING` chip shows bottom-left until the portrait and the remaining
-confirmations land — see [CONTENT.md](CONTENT.md). Set `draft: false` in `content.js` to hide it.
+**Live and complete.** `draft: false` is set, so no draft chip shows.
 
 ---
 
@@ -142,8 +140,13 @@ is also a print stylesheet.
 
 Boot sequence (once per session) · crosshair cursor with hover response · radar sweep canvas with
 a connected node field · tricolour scroll progress · scroll-driven section reveals · animated
-counters · proficiency meters that fill on entry · project category filters · HUD brackets on card
-hover · magnetic buttons · text scramble on the role line · scroll-linked instrument dial ·
-sticky navigation with active-section tracking · mobile drawer · back to top.
+counters · project category filters · HUD brackets on card hover · magnetic buttons · text
+scramble on the role line · scroll-linked instrument dial · sticky navigation with active-section
+tracking · mobile drawer · back to top.
+
+**Off Duty flip cards.** Five cards; hover previews the back, a click locks it there, Escape or the
+arrow button closes it. Each back carries the full text and a button opening that strand's
+photographs in the lightbox — full image, caption, counter, thumbnail strip, arrow-key navigation.
+Under `prefers-reduced-motion` the 3D flip becomes a cross-fade.
 
 Every one of them is disabled or reduced under `prefers-reduced-motion: reduce`.

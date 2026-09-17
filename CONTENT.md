@@ -1,54 +1,51 @@
-# Outstanding items
+# Maintaining this site
 
-Content is in. This is what still needs a decision or a file before `draft: false` is set
-in [`assets/js/content.js`](assets/js/content.js).
+All copy and every photo reference lives in [`assets/js/content.js`](assets/js/content.js).
+Nothing else needs touching to change wording, add a project, or publish more photographs.
 
-## Files — all in
+## Adding photographs to an Off Duty card
 
-- [x] **Portrait** — in place at `assets/img/portrait.jpg`, cropped to 4:5 from the original
-      581 × 772 headshot. It is on the small side for a high-density screen; if a larger
-      original exists, drop it in and I will recrop.
+1. Put the image in `assets/img/gallery/<folder>/` at two sizes:
+   `name.jpg` (long edge 1400 px) and `name_t.jpg` (long edge 560 px).
+2. Add one line to that strand's `gallery` array in `content.js`:
+   `{ src: "name", caption: "What it shows" }`
 
-Done: the photography, NCC and sports images are in. Nine were selected, resized and published
-under `assets/img/gallery/` at two sizes — `_t.jpg` thumbnails for the masonry, full size for
-the lightbox. Re-encoding drops any metadata; in this case there was none to drop, since
-WhatsApp had already stripped it. Originals are kept outside the repo at
-`../../images/sri_saye_magesh_source/`, along with the two sports certificates, which read as
-paperwork on a portfolio and were left off the page.
+The card's photograph count, the lightbox and the thumbnail strip all update themselves.
+Folders in use: `defence_ncc`, `extracurricular`, `sports`, `music`, `photography`.
 
-## Needs Sri Saye's confirmation
+**Music has no photographs yet.** Its card front falls back to a typographic panel, which is why
+it looks different from the other four. Add images to `assets/img/gallery/music/` and set
+`cover` on that strand to switch it to a photo front.
 
-- [ ] **Name spelling.** The site uses **Sri Saye Magesh N**, as it appears on his résumé.
-      The repo and folder are still named `sai-magesh-portfolio` — say if that should change.
-- [ ] **Voice.** The About section is written in the first person ("I work where compliance
-      meets operations…"). Third person is a one-line change if he prefers it.
-- [ ] **Skill levels.** The 0–100 figures in `skills` are an estimate drawn from his résumé,
-      not his own rating. He should adjust them — they are the one thing on the page he can
-      be challenged on in an interview.
-- [ ] **Case decks.** Four of his own documents are published under `assets/docs/` and linked
-      from the project cards. Confirm the competition organisers allow public sharing of
-      submissions before the link goes out widely.
-- [ ] **Résumé PDF.** It is public at `assets/docs/resume_sri_saye_magesh_n.pdf` and carries
-      his age and gender. Fine if intended; worth a second's thought before sharing widely.
+## Adding a project gallery
 
-## Gaps worth filling
+Put the images in `assets/img/gallery/<folder>/`, add the folder to `projectGalleries` in
+`content.js`, then set `gallery: "<folder>"` on the project. A "Field photographs (n)" button
+appears on the card automatically.
 
-- [ ] **FinEase** has no link and no detail beyond one line. A repo link or a screenshot
-      would make it a real entry rather than a mention.
-- [ ] **Tata Steel vs JSW** links to the raw `.xlsx`. A one-page PDF summary would read far
-      better to a recruiter than a spreadsheet download.
-- [ ] **Learnous result** — the site says Pre-Finals. Update if the final placing is known.
-- [ ] **Table tennis detail.** The certificate in the sports folder shows semi-finalist, Sub-Junior
-      Boys Singles, 24th Open Table Tennis Tournament (Salem Round Table No. 28), November 2016.
-      The site currently carries the résumé's broader "state and district-level titles" claim
-      instead. Say which he wants.
-- [ ] **More photographs.** The gallery takes as many as he likes — add the file to
-      `assets/img/gallery/` at both sizes and one line to `offDuty.gallery` in `content.js`.
-- [ ] School results (12th 85.8%, 10th 89.3%) were left off deliberately. Say if they should
-      go back in.
+## Resizing
 
-## Then
+```bash
+# from the repo root, for one folder
+python3 - <<'PY'
+from PIL import Image, ImageOps
+import glob, os
+for f in glob.glob("assets/img/gallery/<folder>/*.jpg"):
+    if f.endswith("_t.jpg"): continue
+    im = ImageOps.exif_transpose(Image.open(f)).convert("RGB")
+    full = im.copy(); full.thumbnail((1400,1400), Image.LANCZOS)
+    th   = im.copy(); th.thumbnail((560,560), Image.LANCZOS)
+    full.save(f, "JPEG", quality=80, optimize=True, progressive=True)
+    th.save(f.replace(".jpg","_t.jpg"), "JPEG", quality=76, optimize=True, progressive=True)
+PY
+```
 
-- [ ] Set `draft: false` in `content.js` — this hides the DRAFT BUILD chip.
-- [ ] Check on a phone.
-- [ ] Transfer the repo (see README).
+## Open points
+
+- [ ] **Case decks are public** under `assets/docs/` and linked from the project cards. Confirm the
+      competition organisers permit sharing submissions.
+- [ ] **Résumé PDF** is public and carries age and gender — normal on an Indian CV, but a
+      deliberate choice worth making.
+- [ ] **FinEase** has no link. A repo or a screenshot would turn it into a real entry.
+- [ ] **Tata Steel vs JSW** links to a raw `.xlsx`. A one-page PDF summary would read better to a
+      recruiter than a spreadsheet download.

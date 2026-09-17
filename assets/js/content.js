@@ -1,26 +1,28 @@
 /* ==========================================================================
    content.js — EVERY piece of text on the site lives here.
    Edit this file only; never touch main.js to change wording.
-   Set  draft: false  once Sri Saye has approved the copy.
+
+   PHOTOS: drop <name>.jpg and <name>_t.jpg into assets/img/gallery/<folder>/
+   and add one line to that strand's gallery array below.
    ========================================================================== */
 
 window.CONTENT = {
 
-  draft: true,
+  draft: false,
 
   /* ── Identity ───────────────────────────────────────────────────────── */
-  name:   "Sri Saye Magesh N",
-  kicker: "Discipline · Precision · Country",
-  role:   "MBA Candidate · Finance & Strategy · Risk & Compliance",
-  roleShort: "Finance · Strategy · Risk",   // short form used in the nav lockup
-  blurb:  "Forty-three months across statutory audit, AML transaction monitoring and UK corporate tax. Now reading for an MBA at Great Lakes Chennai, working on strategy, capital allocation and go-to-market.",
-  resume: "assets/docs/resume_sri_saye_magesh_n.pdf",
+  name:      "Sri Saye Magesh N",
+  kicker:    "Patience · Perseverance · Dedication",
+  role:      "Strong Finance Background · Consulting & Finance Major · Risk & Compliance",
+  roleShort: "Finance · Consulting · Risk",
+  blurb:     "MBA candidate with experience across corporate banking operations, transaction filtering, taxation and financial auditing, with strong exposure to high-volume, high-risk financial processes. Analytical and detail-oriented, skilled in identifying process gaps, improving operational efficiency and maintaining accuracy in risk-sensitive environments. Combines financial knowledge, problem-solving and stakeholder management with a strong interest in credit, portfolio management and investment analysis.",
+  resume:    "assets/docs/resume_sri_saye_magesh_n.pdf",
 
   stats: [
     { value: "43",   label: "Months in practice" },
     { value: "40+",  label: "Audit clients run" },
     { value: "83%",  label: "Cycle time cut" },
-    { value: "100+", label: "NCC cadets led" }
+    { value: "105",  label: "NCC cadets led" }
   ],
 
   /* ── 01 · About ─────────────────────────────────────────────────────── */
@@ -30,7 +32,7 @@ window.CONTENT = {
       "I work where compliance meets operations — finding the control that is failing, then fixing the process behind it.",
       "At NatWest I held a zero processing-error rate across two years of transaction monitoring, and identified a payment cut-off risk running through 2,000–3,000 transactions a day. The automated alert system I proposed cut daily violations by 70%. At M.R. Rajshekar & Co I ran delivery for more than 40 annual audit clients and rebuilt the workflow behind them, cutting process cycle time by 83%.",
       "I am now in the 2026–27 MBA batch at Great Lakes Institute of Management, Chennai, applying that same structure to strategy problems — market entry, channel economics and capital allocation — through live case competitions.",
-      "Away from the desk I served as Company Sergeant Major with the NCC at Ramakrishna Mission Vivekananda College, responsible for over 100 cadets, and was selected for the NCC Youth Exchange Programme to Singapore. Five Services Selection Boards so far, three conference-outs. I play table tennis at state and district level and run long distance."
+      "Away from the desk I served as Company Sergeant Major with the NCC at Ramakrishna Mission Vivekananda College, responsible for 105 cadets, and was selected for the NCC Youth Exchange Programme to Singapore. Five Services Selection Boards so far, three conference-outs. I play table tennis at state level and run long distance."
     ],
     tags: [
       "Risk & Controls",
@@ -49,32 +51,27 @@ window.CONTENT = {
   },
 
   /* ── 02 · Skills ────────────────────────────────────────────────────── */
+  /* Plain lists. No proficiency bars — a self-scored percentage is the one
+     thing on a portfolio an interviewer can argue with. */
   skills: [
     {
-      group: "Risk & compliance",
+      group: "Core Competencies",
       items: [
-        { name: "Risk mitigation & internal controls", level: 90 },
-        { name: "AML transaction monitoring",          level: 88 },
-        { name: "Statutory & tax audit",               level: 85 },
-        { name: "Regulatory reporting",                level: 75 }
+        "Risk mitigation & internal controls",
+        "Problem solving & structured thinking",
+        "Financial analysis & quant modelling",
+        "Cycle-time optimisation",
+        "Client relationship management"
       ]
     },
     {
-      group: "Finance & analysis",
+      group: "Tools & Software",
       items: [
-        { name: "Financial statement analysis", level: 85 },
-        { name: "Cash flow & DCF modelling",    level: 80 },
-        { name: "Unit economics",               level: 78 },
-        { name: "Quantitative modelling",       level: 72 }
-      ]
-    },
-    {
-      group: "Strategy & delivery",
-      items: [
-        { name: "Process & cycle-time optimisation", level: 90 },
-        { name: "Structured problem solving",        level: 85 },
-        { name: "Client & stakeholder management",   level: 85 },
-        { name: "Go-to-market strategy",             level: 72 }
+        "MS Office",
+        "Tally",
+        "Odoo ERP",
+        "Tableau",
+        "Bizagi Modular (Basics)"
       ]
     }
   ],
@@ -140,6 +137,14 @@ window.CONTENT = {
       links:    [{ label: "Deck", url: "assets/docs/the_good_doll_retail_expansion.pdf" }]
     },
     {
+      title:    "Climate Resilience & Adaptive Strategies — Natham Kariyacheri",
+      category: "Sustainability",
+      description: "Led a 10-member team on a field-based sustainability initiative in Chengalpattu, engaging farmers and self-help groups to drive climate-resilient agriculture, strengthen market linkages and create livelihoods. Acted as SPOC between villagers and the team, working past language barriers to build trust and active participation. Promoted water-efficient practices and drought-resilient crops, and built direct market linkages by identifying vendors — improving farmer value capture while enabling SHG-led employment in sorting, packaging and coordination.",
+      stack:    ["Leadership & team management", "Stakeholder management", "Market linkages", "Sustainability & ESG"],
+      gallery:  "karma_yoga",
+      links:    []
+    },
+    {
       title:    "Tata Steel vs JSW Steel — Cash Flow Analysis",
       category: "Finance",
       description: "A three-year comparative study of cash generation quality across FY2024–FY2026, covering operating cash flow, investing and financing activity, free cash flow, capital expenditure and closing cash. Assessed FCF conversion, OCF-to-capex efficiency and reinvestment intensity to judge which company can fund its own growth.",
@@ -157,78 +162,121 @@ window.CONTENT = {
 
   /* ── 05 · Education & certifications ────────────────────────────────── */
   education: [
-    {
-      year:  "2026 — 2027",
-      title: "MBA (PGPM)",
-      org:   "Great Lakes Institute of Management, Chennai",
-      note:  "CGPA 3.28 · Member, Food Committee 2026"
-    },
-    {
-      year:  "2019 — 2022",
-      title: "B.Com (Commerce)",
-      org:   "Ramakrishna Mission Vivekananda College, Chennai",
-      note:  "80.8% · Company Sergeant Major, NCC"
-    },
-    {
-      year:  "2021",
-      title: "CMA (Intermediate)",
-      org:   "Institute of Cost Accountants of India",
-      note:  "Cleared the intermediate level."
-    },
-    {
-      year:  "2026",
-      title: "Discounted Cash Flow Modelling",
-      org:   "Coursera",
-      note:  "Valuation and cash flow modelling certification."
-    },
-    {
-      year:  "2019",
-      title: "Diploma in Computer Application",
-      org:   "Common Service Centre (CSC)",
-      note:  "Foundational computing and office systems."
-    }
+    { year: "2026 — 2027", title: "MBA (PGPM)", org: "Great Lakes Institute of Management, Chennai", note: "CGPA 3.37 · Member, Food Committee 2026" },
+    { year: "2019 — 2022", title: "B.Com (Commerce)", org: "Ramakrishna Mission Vivekananda College, Chennai", note: "80.8% · Company Sergeant Major, NCC" },
+    { year: "2021", title: "CMA (Intermediate)", org: "Institute of Cost Accountants of India", note: "Cleared the intermediate level." },
+    { year: "2026", title: "Discounted Cash Flow Modelling", org: "Coursera", note: "Valuation and cash flow modelling certification." },
+    { year: "2019", title: "Diploma in Computer Application", org: "Common Service Centre (CSC)", note: "Foundational computing and office systems." }
   ],
 
   /* ── 06 · Achievements ──────────────────────────────────────────────── */
   achievements: [
-    { figure: "1st",  title: "Mock SSB — Army",          note: "Placed first in the Services Selection Board mock interview conducted by DGV College, Chennai." },
-    { figure: "3/5",  title: "SSB Conference-Outs",      note: "Three conference-outs across five Services Selection Boards attended to date." },
-    { figure: "100+", title: "Cadets Commanded",         note: "Company Sergeant Major, NCC · Ramakrishna Mission Vivekananda College · 2021–22." },
-    { figure: "YEP",  title: "Youth Exchange Programme", note: "Qualified for the NCC Youth Exchange Programme to Singapore, 2020." },
-    { figure: "1st",  title: "Table Tennis",             note: "Inter-company champion representing NatWest, 2022. Multiple state and district-level titles." },
-    { figure: "3rd",  title: "Marathon — 6 km",         note: "Third place over 6 km in 30 minutes · Strength Fit, Hosur · October 2021." },
-    { figure: "Prize", title: "Paper Presentation",      note: "Prize-winner, Digitisation of India · DG Vaishnav College, Chennai." }
+    { figure: "1st",   title: "Mock SSB — Army",          note: "Placed first in the Services Selection Board mock interview conducted by DGV College, Chennai." },
+    { figure: "3/5",   title: "SSB Conference-Outs",      note: "Three conference-outs across five Services Selection Boards attended to date." },
+    { figure: "105",   title: "Cadets Commanded",         note: "Company Sergeant Major, NCC · Ramakrishna Mission Vivekananda College · 2021–22." },
+    { figure: "YEP",   title: "Youth Exchange Programme", note: "Qualified for the NCC Youth Exchange Programme to Singapore, 2020." },
+    { figure: "1st",   title: "Table Tennis",             note: "Won first place in the intra- and inter-company table tennis tournaments representing NatWest Group." },
+    { figure: "State", title: "Table Tennis",             note: "Represented the district in state-level table tennis for nine consecutive years, with prizes in individual events." },
+    { figure: "Won",   title: "Long Distance Running",    note: "Prizes across long-distance events, including several marathons." },
+    { figure: "80+",   title: "School & College Awards",  note: "Elocution, acting, painting and singing · President, annual drama club." }
   ],
 
   /* ── 07 · Off duty ──────────────────────────────────────────────────── */
   offDuty: {
-    lede: "Three things outside the work that shaped how I operate: the NCC, sport, and a camera.",
+    lede: "Five things outside the spreadsheet — defence, stage, sport, music and a lens — that shaped how I lead, compete and create.",
     strands: [
       {
-        label: "NCC",
-        text:  "Company Sergeant Major at Ramakrishna Mission Vivekananda College, responsible for over 100 cadets, and selected for the Youth Exchange Programme to Singapore. Five Services Selection Boards attended; three conference-outs."
+        label:  "Defence & NCC",
+        folder: "defence_ncc",
+        cover:  "img_1093",
+        text:   "Being the CSM of 105 cadets in the National Cadet Corps inducted me into defence. That experience culminated in selection for the Singapore Youth Exchange Programme 2020. Reaching level 3 in the Army SSB conference after five attempts, and winning DGV College's mock SSB organised by serving colonels, has proved my ability to lead under pressure several times over.",
+        gallery: [
+          { src: "img_1093", caption: "On guard duty" },
+          { src: "ncc_cadets", caption: "The company" },
+          { src: "photo_1", caption: "Cadet contingent, decorated" },
+          { src: "photo_2", caption: "At the war memorial" },
+          { src: "photo_3", caption: "Training ground" },
+          { src: "photo_4", caption: "Camp grounds" },
+          { src: "photo_5", caption: "Republic Day kolam" },
+          { src: "photo_6", caption: "On parade" },
+          { src: "photo_7", caption: "Cross-country, race day" },
+          { src: "photo_8", caption: "Camp gate" },
+          { src: "photo_9", caption: "Kit laid out" },
+          { src: "photo_10", caption: "Before the parade" },
+          { src: "photo_11", caption: "Prize ceremony" }
+        ]
       },
       {
-        label: "Sport",
-        text:  "Table tennis at state and district level, and inter-company champion at NatWest. Third place over 6 km at the Strength Fit marathon in Hosur, in 30 minutes."
+        label:  "Extracurricular",
+        folder: "extracurricular",
+        cover:  "photo_4",
+        text:   "Having always been a 'yes man' at school, I have won more than 80 awards across elocution, acting, painting and singing. Serving as President of my college's annual drama club gave me the exposure that built creativity and adaptability, and made me a curious learner for life.",
+        gallery: [
+          { src: "photo_1", caption: "Certificates of merit" },
+          { src: "photo_2", caption: "Stacked and kept" },
+          { src: "photo_3", caption: "Eighty and counting" },
+          { src: "photo_4", caption: "At the microphone" }
+        ]
       },
       {
-        label: "Photography",
-        text:  "Mostly skies, mostly at dusk, mostly from a rooftop in Chennai. Shot on a phone — the light does the work."
+        label:  "Sports",
+        folder: "sports",
+        cover:  "photo_2",
+        text:   "I play badminton, cricket and cycle to stay agile and team-oriented, but my competitive drive sits in state-level table tennis and long-distance running. Table tennis trained my split-second decision-making; distance running taught me resilience. Beyond competition, daily fitness is non-negotiable — it keeps my mind sharp under pressure. On the pitch, the table or the road, sport has hardwired me to outlast the challenge.",
+        gallery: [
+          { src: "photo_1", caption: "The trophy shelf" },
+          { src: "photo_2", caption: "A handful of medals" },
+          { src: "photo_3", caption: "Krishnagiri district ranking — table tennis" },
+          { src: "photo_4", caption: "Marathon certificate, Hosur" },
+          { src: "photo_5", caption: "Long-distance trophy" },
+          { src: "photo_6", caption: "Running on the beach" },
+          { src: "photo_7", caption: "On the bike" },
+          { src: "photo_8", caption: "Evening on the terrace" },
+          { src: "photo_9", caption: "Badminton court" }
+        ]
+      },
+      {
+        label:  "Music",
+        folder: "music",
+        cover:  "",
+        text:   "Playing the violin for four years taught me several things. First, the endless patience and refinement that mastering anything demands. Second, through my school's bhajan group, how individual voices must blend exactly to form a harmonious whole. I led many bhajan sessions in my school years. Music gives me the balance my rational mindset needs.",
+        gallery: []          // no photographs yet — the card front falls back to type
+      },
+      {
+        label:  "Photography",
+        folder: "photography",
+        cover:  "photo_3",
+        text:   "Photography, for me, means freezing the neglected parts of a fast-moving environment. Just as I find patterns among complex numbers and financial statements, through a lens I can hold both movement and stillness in a single frame. Photography needs no words — the image carries everything.",
+        gallery: [
+          { src: "photo_1", caption: "Anvil cloud building" },
+          { src: "photo_2", caption: "Inverted horizon" },
+          { src: "photo_3", caption: "Night-blooming cereus" },
+          { src: "photo_4", caption: "Temple interior" },
+          { src: "photo_5", caption: "Campus from above" },
+          { src: "photo_6", caption: "Lights and long tables" },
+          { src: "photo_7", caption: "Falling water" },
+          { src: "photo_8", caption: "The main block" },
+          { src: "photo_9", caption: "Grey afternoon, brick path" },
+          { src: "photo_10", caption: "Last light on the scrub" },
+          { src: "photo_11", caption: "The road out" },
+          { src: "photo_12", caption: "Platform arches" }
+        ]
       }
-    ],
-    /* Masonry order — photos keep their own proportions. Add or remove freely;
-       each needs <src>.jpg and <src>_t.jpg in assets/img/gallery/. */
-    gallery: [
-      { src: "ncc_guard",   caption: "Guard duty · NCC",            alt: "Sri Saye Magesh in NCC uniform on guard duty, rifle at his side" },
-      { src: "ncc_portrait", caption: "Company Sergeant Major",      alt: "Formal portrait in NCC uniform" },
-      { src: "photo_palm_sunset", caption: "Sundown through the palms",   alt: "Sun setting behind coconut palms" },
-      { src: "photo_storm_cloud", caption: "Anvil cloud building",        alt: "A towering storm cloud over rooftops at dusk" },
-      { src: "photo_rooftop_dusk", caption: "Rooftop, last light",         alt: "Silhouette of a figure on a rooftop against the setting sun" },
-      { src: "sport_trophy", caption: "Long distance",               alt: "Running trophy topped with a sprinting figure" },
-      { src: "ncc_cadets",  caption: "The company · NCC",           alt: "Group of NCC cadets in uniform" },
-      { src: "photo_night_bloom", caption: "Night-blooming cereus",       alt: "A white night-blooming cereus flower against darkness" },
-      { src: "photo_skyline_dusk", caption: "Chennai skyline at dusk",     alt: "Wide view of the Chennai skyline at dusk with layered cloud" }
+    ]
+  },
+
+  /* ── Project galleries, keyed by the project's `gallery` value ──────── */
+  projectGalleries: {
+    karma_yoga: [
+      { src: "ky_1", caption: "At the village shop" },
+      { src: "ky_2", caption: "The ten-member team" },
+      { src: "ky_3", caption: "In the fields, Natham Kariyacheri" },
+      { src: "ky_4", caption: "In session with a local trader" },
+      { src: "ky_5", caption: "Working through the numbers" },
+      { src: "ky_6", caption: "With the self-help group" },
+      { src: "ky_7", caption: "Community session" },
+      { src: "ky_8", caption: "Door to door" },
+      { src: "ky_9", caption: "Mapping the retail chain" }
     ]
   },
 
