@@ -2,7 +2,7 @@
 
 Portfolio site for Sri Saye Magesh N — MBA (PGPM) candidate, Great Lakes Chennai. Single page. Static, dependency-free, no build step. Deployed on GitHub Pages.
 
-**Live:** https://akaditya12.github.io/sai-magesh-portfolio/
+**Live:** https://srisayemagesh.github.io/
 
 ---
 
@@ -21,11 +21,13 @@ touching to change wording, add a project, or update the contact details.
 |---|---|
 | Name, role, tagline, hero counters | `name`, `role`, `kicker`, `blurb`, `stats` |
 | About paragraphs, tags, side panel facts | `about` |
-| Skill groups and proficiency bars | `skills` |
+| Skill lists | `skills` |
 | Work history | `experience` |
 | Project cards and filter categories | `projects` |
 | Degrees and certifications | `education` |
 | Awards and milestones | `achievements` |
+| Off Duty flip cards and their photo galleries | `offDuty` |
+| Project photo galleries | `projectGalleries` |
 | Email, phone, LinkedIn, GitHub | `contact` |
 
 ### Adding the photo and résumé
@@ -33,7 +35,7 @@ touching to change wording, add a project, or update the contact details.
 | File | Drop it at | Then set |
 |---|---|---|
 | Portrait | `assets/img/portrait.jpg` | `about.portrait: "assets/img/portrait.jpg"` |
-| Résumé PDF | `assets/docs/resume.pdf` | `resume: "assets/docs/resume.pdf"` |
+| Résumé PDF | `assets/docs/` | `resume: "assets/docs/<file>.pdf"` |
 
 Portrait works best at 4:5, at least 800 × 1000 px. If `about.portrait` is left empty the panel
 shows a marked placeholder instead of breaking.
@@ -43,7 +45,10 @@ shows a marked placeholder instead of breaking.
 Experience bullets follow one shape: **action verb → what → how or at what scale → measurable
 outcome.** "Cut assembly rework by 18% across three lines" beats "responsible for quality".
 
-Skill levels are 0–100 and should be honest. Everything at 95 communicates nothing.
+### Photographs
+
+See [CONTENT.md](CONTENT.md) — it covers adding images to an Off Duty card or a project gallery,
+including the resize snippet.
 
 ---
 
@@ -76,22 +81,13 @@ as-is rather than running them through Jekyll.
 
 ---
 
-## Transferring the repo to Sai
+## Where this lives
 
-When he is ready to own it:
+This repo is `SriSayeMagesh/SriSayeMagesh.github.io` — a GitHub **user site**, so it serves from
+the root address `https://srisayemagesh.github.io/` with no subpath.
 
-```bash
-gh repo transfer Akaditya12/sai-magesh-portfolio <his-github-username>
-```
-
-Or via the web UI: **Settings → General → Danger Zone → Transfer ownership.**
-
-Transfer keeps the full commit history and leaves a redirect from the old URL. He then needs to
-re-enable Pages under **Settings → Pages → Deploy from branch → `main` / `root`**. The site
-address becomes `https://<his-username>.github.io/sai-magesh-portfolio/`.
-
-For a cleaner address, rename the repo to `<his-username>.github.io` — it then serves from
-`https://<his-username>.github.io/`.
+Pages deploys from `main` on every push. `.nojekyll` is present so the files are served as-is
+rather than run through Jekyll.
 
 ---
 
@@ -105,8 +101,9 @@ assets/
   css/styles.css        All styling, tokens at the top
   js/content.js         ← ALL CONTENT LIVES HERE
   js/main.js            Rendering and interaction. No copy in this file.
-  img/                  Portrait and any project images
-  docs/                 Résumé PDF
+  img/portrait.jpg      About-panel portrait
+  img/gallery/          Photographs, one folder per gallery, two sizes each
+  docs/                 Résumé, case decks, models
 ```
 
 ---
@@ -130,7 +127,7 @@ combinations clear WCAG AA on the dark base.
 **Type.** Oswald for display, Inter for body, JetBrains Mono for labels and data.
 
 **Accessibility.** Skip link, visible focus rings, keyboard-operable navigation and filters,
-semantic landmarks, ARIA labels on the proficiency meters, and a full `prefers-reduced-motion`
+semantic landmarks, a keyboard-operable lightbox and flip cards, and a full `prefers-reduced-motion`
 path that disables the boot sequence, cursor, radar canvas, parallax and scramble effect. There
 is also a print stylesheet.
 
